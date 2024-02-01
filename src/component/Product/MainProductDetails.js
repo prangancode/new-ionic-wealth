@@ -12,7 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Toastify } from "../../actions/alertAction";
 import ProgressBar from "../progressBar/ProgressBar";
-import { addItemsToCart } from "../../actions/cartAction";
+import { addItemsToCart, clearMessages } from "../../actions/cartAction";
+import ShoppingCartSidebar from "../ShoppingCartSidebar/ShoppingCartSidebar";
 
 const productInfo = {
   name: "Basic Tee",
@@ -122,7 +123,9 @@ function classNames(...classes) {
 }
 
 const MainProductDetails = () => {
+  const { cartItems, message, icon } = useSelector((state) => state.cart);
   const [quantity] = useState(1);
+  const [open, setOpen] = useState(false);
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
   );
@@ -147,9 +150,14 @@ const MainProductDetails = () => {
   }, []);
 
   const addToCartHandler = () => {
-    // dispatch(addItemsToCart(id, quantity));
-    console.log("added");
+    dispatch(addItemsToCart(id, quantity));
+    setOpen(true);
   };
+
+  useEffect(() => {
+    dispatch(Toastify(icon, message, true));
+    dispatch(clearMessages());
+  }, [message]);
 
   return (
     <>
@@ -485,6 +493,14 @@ const MainProductDetails = () => {
           </div>
         </section>
       </main>
+
+      {/* Sidebar */}
+
+      <ShoppingCartSidebar
+        open={open}
+        setOpen={setOpen}
+        cartItems={cartItems}
+      />
     </>
   );
 };

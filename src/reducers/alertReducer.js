@@ -6,6 +6,7 @@ export const toastAlertReducer = (state = { toastifyAlert: {} }, action) => {
       return {
         type: action.payload.type,
         message: action.payload.message,
+        position: action.payload.position,
       };
 
     // case ALERT_RESET:

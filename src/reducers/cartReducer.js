@@ -1,11 +1,14 @@
 import {
   ADD_TO_CART,
+  CLEAR_MESSAGE,
+  DECREASE_QUANTITY,
+  INCREASE_QUANTITY,
   REMOVE_CART_ITEM,
   SAVE_SHIPPING_INFO,
 } from "../constants/cartConstants";
 
 export const cartReducer = (
-  state = { cartItems: [], shippingInfo: {} },
+  state = { cartItems: [], shippingInfo: {}, message: null, icon: null },
   action
 ) => {
   switch (action.type) {
@@ -22,11 +25,37 @@ export const cartReducer = (
           cartItems: state.cartItems.map((i) =>
             i.product === isItemExist.product ? item : i
           ),
+          message: "Item has already been added!",
+          icon: "info",
         };
       } else {
         return {
           ...state,
           cartItems: [...state.cartItems, item],
+          message: "Item has been added successfully!",
+          icon: "success",
+        };
+      }
+
+    case INCREASE_QUANTITY:
+    case DECREASE_QUANTITY:
+      const product = action.payload;
+
+      const isProductExist = state.cartItems.find(
+        (i) => i.product === product.product
+      );
+
+      if (isProductExist) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((i) =>
+            i.product === isProductExist.product ? product : i
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, product],
         };
       }
 
@@ -40,6 +69,13 @@ export const cartReducer = (
       return {
         ...state,
         shippingInfo: action.payload,
+      };
+
+    case CLEAR_MESSAGE:
+      return {
+        ...state,
+        message: null,
+        icon: null,
       };
 
     default:

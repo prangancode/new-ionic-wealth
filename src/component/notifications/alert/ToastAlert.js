@@ -4,7 +4,9 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ToastAlert = () => {
-  const { type, message } = useSelector((state) => state.toastifyAlert);
+  const { type, message, position } = useSelector(
+    (state) => state.toastifyAlert
+  );
 
   if (type !== undefined && type !== "") {
     switch (type) {
@@ -32,7 +34,9 @@ const ToastAlert = () => {
     }
   }
 
-  return <ToastContainer />;
+  return (
+    <ToastContainer autoClose={3000} position={position && "top-center"} />
+  );
 };
 
 export default ToastAlert;

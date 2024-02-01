@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userAction";
 import Dropdown from "../../component/Dropdown/Dropdown";
+import ShoppingCartSidebar from "../../component/ShoppingCartSidebar/ShoppingCartSidebar";
 
 const currencies = ["CAD", "USD", "AUD", "EUR", "GBP"];
 const navigation = {
@@ -101,10 +102,13 @@ function classNames(...classes) {
 }
 
 const Header = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const { user } = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
+  // const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleLogOut = () => {
     dispatch(logout(history));
@@ -532,16 +536,18 @@ const Header = () => {
 
                     {/* Cart */}
                     <div className="ml-4 flow-root lg:ml-8">
-                      <Link to="#" className="group -m-2 flex items-center p-2">
-                        <ShoppingBagIcon
-                          className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                          aria-hidden="true"
-                        />
+                      <div className="group -m-2 flex items-center p-2">
+                        <Link to="/cart">
+                          <ShoppingBagIcon
+                            className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500 cursor-pointer"
+                            aria-hidden="true"
+                          />
+                        </Link>
                         <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
-                          0
+                          {cartItems.length}
                         </span>
                         <span className="sr-only">items in cart, view bag</span>
-                      </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -550,6 +556,14 @@ const Header = () => {
           </div>
         </nav>
       </header>
+
+      {/* Sidebar */}
+
+      {/* <ShoppingCartSidebar
+        open={openSidebar}
+        setOpen={setOpenSidebar}
+        cartItems={cartItems}
+      /> */}
     </div>
   );
 };

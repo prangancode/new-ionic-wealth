@@ -22,7 +22,7 @@ const UserInfoForm = () => {
   //   const [avatar, setAvatar] = useState();
   //   const [avatarPreview, setAvatarPreview] = useState(null);
 
-  const [avatar, setAvatar] = useState();
+  const [setAvatar] = useState();
   const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const UserInfoForm = () => {
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, user, isUpdated]);
+  }, [dispatch, user, isUpdated, message]);
 
   useEffect(() => {
     if (error) {
