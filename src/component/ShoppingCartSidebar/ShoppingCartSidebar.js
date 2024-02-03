@@ -2,7 +2,11 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { MinusIcon, PlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
-import { addItemsToCart, removeItemsFromCart } from "../../actions/cartAction";
+import {
+  decreaseProductQuantity,
+  increaseProductQuantity,
+  removeItemsFromCart,
+} from "../../actions/cartAction";
 import { Link } from "react-router-dom";
 
 const ShoppingCartSidebar = ({ open, setOpen, cartItems }) => {
@@ -18,7 +22,7 @@ const ShoppingCartSidebar = ({ open, setOpen, cartItems }) => {
     if (stock <= quantity) {
       return;
     }
-    dispatch(addItemsToCart(id, newQty));
+    dispatch(increaseProductQuantity(id, newQty));
   };
 
   const decreaseQuantity = (id, quantity) => {
@@ -26,7 +30,7 @@ const ShoppingCartSidebar = ({ open, setOpen, cartItems }) => {
     if (1 >= quantity) {
       return;
     }
-    dispatch(addItemsToCart(id, newQty));
+    dispatch(decreaseProductQuantity(id, newQty));
   };
 
   return (

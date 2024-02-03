@@ -19,6 +19,7 @@ function App() {
         <Route exact path="/registration" component={Registration} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/cart" component={Cart} />
+        <Route exact path="/checkout" component={Checkout} />
       </Switch>
     </Router>
   );

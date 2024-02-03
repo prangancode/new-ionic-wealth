@@ -13,56 +13,70 @@ export const cartReducer = (
 ) => {
   switch (action.type) {
     case ADD_TO_CART:
-      const item = action.payload;
+      const newItem = action.payload;
 
-      const isItemExist = state.cartItems.find(
-        (i) => i.product === item.product
+      const existingItem = state.cartItems.find(
+        (i) => i.product === newItem.product
       );
 
-      if (isItemExist) {
+      if (existingItem) {
+        // If the item already exists in the cart, maintain the updated quantity
         return {
           ...state,
-          cartItems: state.cartItems.map((i) =>
-            i.product === isItemExist.product ? item : i
+          cartItems: state.cartItems.map((item) =>
+            item.product === existingItem.product
+              ? {
+                  ...item,
+                  quantity:
+                    existingItem.quantity + newItem.quantity <= newItem.stock
+                      ? existingItem.quantity + newItem.quantity
+                      : existingItem.quantity,
+                }
+              : item
           ),
           message: "Item has already been added!",
           icon: "info",
         };
       } else {
+        // If the item is not in the cart, add it with the specified quantity
         return {
           ...state,
-          cartItems: [...state.cartItems, item],
+          cartItems: [...state.cartItems, newItem],
           message: "Item has been added successfully!",
           icon: "success",
         };
       }
 
     case INCREASE_QUANTITY:
+      const increasedProduct = action.payload;
+
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item.product === increasedProduct.product
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+
     case DECREASE_QUANTITY:
-      const product = action.payload;
+      const decreasedProduct = action.payload;
 
-      const isProductExist = state.cartItems.find(
-        (i) => i.product === product.product
-      );
-
-      if (isProductExist) {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((i) =>
-            i.product === isProductExist.product ? product : i
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [...state.cartItems, product],
-        };
-      }
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item.product === decreasedProduct.product
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        ),
+      };
 
     case REMOVE_CART_ITEM:
       return {
         ...state,
         cartItems: state.cartItems.filter((i) => i.product !== action.payload),
+        message: "Item has been removed from cart!",
+        icon: "success",
       };
 
     case SAVE_SHIPPING_INFO:
