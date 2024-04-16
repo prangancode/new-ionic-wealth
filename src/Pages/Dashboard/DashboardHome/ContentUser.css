@@ -1,0 +1,215 @@
+.pricing-enterprise {
+    position: relative;
+    padding-bottom: 30px;
+}
+
+.pricing-enterprise .container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.pricing-enterprise .container:before {
+    display: table;
+    content: " ";
+}
+
+.pricing-enterprise .wrapper {
+    margin: 0 0 30px;
+    background-color: #0c163b;
+    border-radius: 24px;
+    padding: 55px 100px;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.pricing-enterprise .wrapper .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.pricing-enterprise .wrapper .row:before {
+    display: table;
+    content: " ";
+}
+
+.pricing-enterprise .wrapper .row .col-xs-12 {
+    width: 100%;
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.pricing-enterprise .wrapper h3 {
+    color: inherit;
+    margin-bottom: 30px;
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 700;
+    font-style: normal;
+    margin-top: 0;
+
+}
+
+
+.pricing-enterprise .wrapper .text {
+    font-size: 17px;
+    padding: 0 20%;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.pricing-enterprise .wrapper .text p {
+    margin-bottom: 30px;
+}
+
+.pricing-enterprise .wrapper .row:after {
+    clear: both;
+    display: table;
+    content: " ";
+}
+
+.pricing-enterprise .wrapper .items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.pricing-enterprise .wrapper .items li:nth-child(1),
+.pricing-enterprise .wrapper .items li:nth-child(2),
+.pricing-enterprise .wrapper .items li:nth-child(3) {
+    border-bottom: 1px solid rgba(179, 207, 251, .2);
+}
+
+.pricing-enterprise .wrapper .items li {
+    flex: 0 0 28%;
+    max-width: 28%;
+    display: flex;
+    align-items: flex-start;
+    padding: 10px 0;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.pricing-enterprise .wrapper .items li svg {
+    flex: 0 0 16px;
+    max-width: 16px;
+    margin-right: 10px;
+    margin-top: 3px;
+    color: #b3cffb;
+}
+
+.pricing-enterprise .wrapper .items li svg:not(:root) {
+    overflow: hidden;
+}
+
+.pricing-enterprise .pattern.pattern-1 {
+    width: 80px;
+    height: 80px;
+    border: 20px solid #f7bc02;
+    top: -20px;
+    left: 10%;
+}
+
+.pricing-enterprise .pattern.pattern-1 {
+    width: 80px;
+    height: 80px;
+    border: 20px solid #f7bc02;
+    top: -20px;
+    left: 10%;
+}
+
+.pricing-enterprise .pattern {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pricing-enterprise .pattern.pattern-2 {
+    width: 120px;
+    height: 120px;
+    border: 30px solid #48c4d8;
+    top: 120px;
+    right: -30px;
+}
+
+.pricing-enterprise .pattern.pattern-3 {
+    width: 60px;
+    height: 60px;
+    border: 20px solid #ff5050;
+    top: 280px;
+    left: -20px;
+}
+
+.pricing-enterprise .wrapper+.row {
+    margin-top: -48px;
+    position: relative;
+    z-index: 3;
+}
+
+.enterprise-closing-text p {
+    margin-bottom: 30px;
+}
+
+.enterprise-closing-text p {
+    margin: 0 0 10px;
+}
+
+
+
+.enterprise-closing-text .btn {
+    min-width: 272px;
+}
+
+.enterprise-closing-text .btn-default {
+    color: #fff;
+    background-color: #ff5050;
+    border-color: #ff5050;
+}
+
+.enterprise-closing-text .btn {
+    text-transform: uppercase;
+    white-space: normal !important;
+    font-weight: 700;
+    border-radius: 27px;
+    padding: 13px 35px;
+    text-decoration: none;
+    letter-spacing: .2px;
+    font-size: 18px;
+}
+
+/* .enterprise-closing-text .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+} */
+
+.enterprise-closing-text hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
+.enterprise-closing-text a {
+    font-family: sofia-pro, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    color: #ff5050;
+    text-decoration: none;
+}

@@ -1,0 +1,121 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: relative;
+  width: 30px;
+  height: 24px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #252525;
+    height: 4px!important;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 32px!important;
+  width: 32px!important;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: var(--clr-primary);
+    color: #fff;
+}
+
+.bm-cross-button:hover .bm-cross {
+    background: #000;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #ffffff;
+  padding: 0;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    left: 0;
+}
+
+/* Inquire Now Button Styling */
+.site-buttonmobile{
+  background-color: var(--clr-primary) ;
+  position: relative;
+  z-index: 1;
+vertical-align: middle;
+  color: #fff;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  outline: none;
+  border-width: 0;
+  border-style: solid;
+  border-color: transparent;
+  line-height: 1.42857;
+border-radius: 3px;
+text-align:center;
+margin-right: 10px;
+}
+.site-buttonmobile:hover,
+.site-buttonmobile:focus,
+.active > .site-button {
+  background-color: var(--clr-primary);
+  color: #fff;
+  transition: all 0.2s linear;
+}
+.site-buttonmobile:after {
+  background-color: #000;
+  content: "";
+  height: 100%;
+  left: 50%;
+  opacity: 0.15;
+  position: absolute;
+  top: 0;
+  transform: skewX(0);
+  -o-transform: skewX(0);
+  -ms-transform: skewX(0);
+  -webkit-transform: skewX(0);
+  -moz-transform: skewX(0);
+  transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  -ms-transition: all 0.5s ease 0s;
+  width: 0;
+  z-index: -1;
+}
+.site-buttonmobile:hover:after {
+left: 6%;
+  width: 87%;
+transform: skewX(25deg);
+-o-transform: skewX(25deg);
+-ms-transform: skewX(25deg);
+-webkit-transform: skewX(25deg);
+-ms-transform: skewX(25deg);
+}

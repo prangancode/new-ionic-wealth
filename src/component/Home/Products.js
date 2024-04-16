@@ -39,7 +39,7 @@ const Products = () => {
           </div>
 
           <div className="mt-6 grid grid-cols-1 gap-y-10 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-0 lg:gap-x-8">
-            {products.slice(0, 3).map((product) => (
+            {products?.slice(0, 3).map((product) => (
               <div key={product._id} className="group relative">
                 <div className="h-96 w-full overflow-hidden rounded-lg sm:aspect-h-3 sm:aspect-w-2 group-hover:opacity-75 sm:h-auto">
                   <img

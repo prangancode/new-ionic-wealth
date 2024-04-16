@@ -1,0 +1,51 @@
+.breadcrumb-section-review {
+    position: relative;
+    z-index: 1;
+    padding: 60px 0;
+}
+
+
+
+.breadcrumb-section-review::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: #1D4E8D;
+    background-blend-mode: luminosity;
+    opacity: 0.8;
+    z-index: -1;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+
+@media (min-width: 1200px) {
+    .breadcrumb-section-review .container {
+        max-width: 1170px;
+    }
+}
+
+
+.breadcrumb-section-review .breadcrumb-text-review {
+    text-align: center;
+}
+
+.breadcrumb-section-review .breadcrumb-text-review .review-page-title {
+    color: #fff;
+    font-size: 20px;
+}
+
+
+.breadcrumb-section-review .breadcrumb-text-review h1 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    margin: 0px;
+}
+
+.breadcrumb-section-review .breadcrumb-text-review ul li,
+.breadcrumb-section-review .breadcrumb-text-review ul li a {
+    color: #fff;
+}

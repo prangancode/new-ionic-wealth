@@ -1,0 +1,16 @@
+.tabs-dashboard-user {
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    color: black;
+    position: relative;
+    font-size: 1.1rem;
+    text-align: left;
+    padding: 0.6rem;
+}
+
+.active-tabs-dashboard-user {
+    color: #ffffff;
+    background-color: #314692;
+    transition: all .4s ease-in-out;
+}

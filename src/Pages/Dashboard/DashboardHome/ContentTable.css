@@ -1,0 +1,23 @@
+.section-gap-userdata {
+    padding-top: 0px;
+    padding-bottom: 50px;
+}
+
+.row-userdata {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col-lg-6-userdata {
+    -ms-flex: 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}

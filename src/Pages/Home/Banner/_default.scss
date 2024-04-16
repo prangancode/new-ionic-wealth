@@ -1,0 +1,58 @@
+// a {
+//     color: inherit;
+//     font-size: inherit;
+//     line-height: inherit;
+//     text-decoration: none;
+// }
+
+// ul {
+//     padding-left: 0;
+// }
+
+// p {
+//     font-size: 1.8rem;
+//     line-height: 3.4rem;
+
+//     &.large {
+//         font-size: 2rem;
+//     }
+
+//     &.small {
+//         font-size: 1.6rem;
+//     }
+
+//     @media (max-width: 992px) {
+//         font-size: 2rem;
+//         &.small {
+//             font-size: 1.8rem;
+//         }
+//     }
+// }
+
+// h1 {
+//     font-size: 3rem;
+//     font-weight: 400;
+//     @media (max-width: 992px) {
+//         font-size: calc(4rem + (6 - 4) * ((100vw - 200px) / (992 - 200)));
+//         // line-height: calc(4.6rem + (6 - 4.6) * ((100vw - 200px) / (992 - 200)));
+//     }    
+// }
+
+// h2 {
+//     font-size: 4.4rem;
+//     line-height: 6rem;
+//     @media (max-width: 992px) {
+//         font-size: calc(3rem + (4.4 - 3) * ((100vw - 200px) / (992 - 200)));
+//         line-height: calc(4.6rem + (6 - 4.6) * ((100vw - 200px) / (992 - 200)));
+//     }
+// }
+
+// h3 {
+//     font-size: 3rem;
+//     line-height: 4.4rem;
+// }
+
+// h4 {
+//     font-size: 2rem;
+//     line-height: 2.4rem;
+// }

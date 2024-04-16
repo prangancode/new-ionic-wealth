@@ -1,0 +1,221 @@
+/****************************************
+button
+****************************************/
+.button {
+    &-group {
+        display: block;
+        margin-left: -1.2rem;
+    }
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    padding: 1.7rem 3.7rem 1.8rem 3.7rem;
+    font-size: 1.4rem;
+    // @include animateIt(.4s);
+    margin-left: 1.2rem;
+
+    @media (max-width: 992px) {
+        &-group {
+            margin-top: -1rem;
+        }
+        margin-top: 1rem;
+    }
+    @media (max-width: 480px) {
+        margin-top: 1rem;
+        padding: 1rem 3rem 1rem 1rem;
+        font-size: 1rem;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        position: relative;
+    }
+    span {
+        font-weight: 600;
+        letter-spacing: .1rem;
+        margin-left: .9rem;    
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        left: -45%;
+        top: 0;
+        transform: skew(50deg);
+        transform-origin: top left;
+        width: 0;
+        z-index: 1;
+        // @include animateIt(.4s);
+        transition: all 1s ease;
+    }
+    &:hover {
+        &::after {
+            height: 100%;
+            width: 145%;
+        }
+    }
+    &-bg {
+        &::after {
+            left: -100%;
+        }
+        &:hover {
+            &::after {
+                width: 200%;
+            }
+        }
+    }
+    &-1 {
+        background-color: #fff;
+        border: .1rem solid transparent;
+        color: gray;
+        &::after {
+            background-color: #0096ff;
+        }
+        &:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+    }
+    &-2 {
+        background-color: transparent;
+        border: .1rem solid #fff;
+        color: #fff;
+        &::after {
+            background-color: #fff;
+        }
+        &:hover {
+            color: gray;
+        }
+    }
+    &-3 {
+        background-color: #0096ff;
+        border: none;
+        color: #fff;
+        &::after {
+            background-color: black;
+        }
+        &:hover {
+            color: #fff;
+        }
+    }
+    &-4 {
+        background-color: #0096ff;
+        padding: 1.3rem 2.5rem 1.4rem 2.5rem;
+        border: none;
+        color: #fff;
+
+        font-size: 1rem;
+
+        @media (max-width: 992px) {
+            font-size: 1.2rem;
+        }
+
+        &::after {
+            background-color: #0096ff;
+        }
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+button.button {
+    border: none;
+}
+
+/****************************************
+link
+****************************************/
+.link {
+    --line: #646B8C;
+    --color: #2B3044;
+    text-decoration: none;
+    color: var(--color);
+    position: relative;
+    display: inline-block;
+    > span {
+        font-size: 1.4rem;
+        line-height: 3.4rem;
+        letter-spacing: .04rem;
+        color: #0096ff;
+        position: relative;
+        // @include animateIt;
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0rem;
+            bottom: -.25rem;
+            height: .1rem;
+            background-color: #0096ff;
+            transform-origin: right center;
+            transform: scale(0, 1);
+            transition: transform .3s ease;
+        }
+    }
+
+    
+    &:hover {
+        > span {
+            text-decoration: none;
+            &::before {
+                transform-origin: left center;
+                transform: scale(1, 1);
+            }
+        }
+    }
+
+    &-1 {
+        span {
+            background-image: none;
+        }
+        --stroke-delay: .0s;
+    }
+    &-inherit {
+        span {
+            font-size: inherit;
+            line-height: inherit;
+        }
+    }
+    &-grey {
+        span {
+            color: gray;
+        }
+        > span {
+            &::before {
+                background-color: gray;
+            }
+        }
+    }
+    &-sm {
+        span {
+            font-size: 1.2rem;
+        }
+    }
+    &-md {
+        span {
+            font-size: 1.8rem;
+        }
+    }
+    &-lg {
+        span {
+            font-size: 2rem;
+        }
+    }
+    &-ls {
+        svg {
+            left: -1rem;
+        }
+    }
+    &.active {
+        > span {
+            &::before {
+                transform-origin: left center;
+                transform: scale(1, 1);
+            }
+        }       
+    }
+}
