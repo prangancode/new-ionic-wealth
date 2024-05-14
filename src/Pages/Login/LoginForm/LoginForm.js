@@ -1,46 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import {
   RiAsterisk,
   RiGoogleFill,
   RiGithubFill,
   RiTwitterFill,
 } from "react-icons/ri";
-import { FcGoogle } from "react-icons/fc";
-import { useHistory, useLocation } from "react-router-dom";
 import loginImg from "../../../images/login/login-bg.jpg";
-import logoImg from "../../../images/Ionic Wealth logo-1.png";
 import "./LoginForm.css";
-import useAuthContexts from "../../../Hooks/Firebase/useAuthContexts";
-import { Link } from "react-router-dom";
-import LoadingStatus from "../../Shared/LoadingStatus/LoadingStatus";
+import { Link, useHistory } from "react-router-dom";
+import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, login } from "../../../actions/userAction";
+import { Toastify } from "../../../actions/alertAction";
 
 const LoginForm = () => {
-  const status = "Logging in";
-  const [adding, setAdding] = useState(false);
-  // const [error, setError] = useState(null);
-  // const { loginWithEmail, signInWithGoogle, signInWithTwitter, signInWithGithub, resetPasswordWithEmail, user, authError } = useAuthContexts();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const location = useLocation();
   const history = useHistory();
-  const [enteredLoginEmail, setEnteredLoginEmail] = useState("");
+  const dispatch = useDispatch();
+  const { error, loading, isAuthenticated, user } = useSelector(
+    (state) => state.user
+  );
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // setAdding(true);
-    // loginWithEmail(
-    //   data.loginEmail,
-    //   data.loginPassword,
-    //   location,
-    //   history
-    // ).finally(() => setAdding(false));
-    // console.log(data);
-  };
+  useEffect(() => {
+    if (error) {
+      dispatch(Toastify("error", error));
+      dispatch(clearErrors());
+    }
+  }, [error]);
 
+  useEffect(() => {
+    // if (isAuthenticated) {
+    if (user?.role === "user") {
+      history.push("/dashboard");
+    }
+    // }
+  }, [history, user]);
+
+  console.log("user :>> ", user);
   return (
     <>
       <div id="main-wrapper" class="iw-login-register">
@@ -56,9 +51,7 @@ const LoginForm = () => {
                 ></div>
                 <div class="hero-content w-full min-vh-100 flex flex-col">
                   <div class="flex flex-wrap">
-                    <div class="col-lg-9 mx-auto">
-                      {/* <div class="logo mt-5 mb-5"> <a class="flex" href=" " title="Ionic Wealth"><img src={logoImg} className="h-24 w-24" alt="Ionic Wealth" /></a> </div> */}
-                    </div>
+                    <div class="col-lg-9 mx-auto"></div>
                   </div>
                   <div class="flex flex-wrap my-auto">
                     <div class="col-lg-9 mx-auto">
@@ -85,94 +78,90 @@ const LoginForm = () => {
                       </span>{" "}
                       Now
                     </h3>
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                      className="flex flex-col space-y-4"
+
+                    <Formik
+                      initialValues={{
+                        email: "",
+                        password: "",
+                      }}
+                      onSubmit={(values, { setSubmitting }) => {
+                        console.log("values", values);
+
+                        dispatch(login(values.email, values.password));
+                      }}
                     >
-                      <div>
-                        <label className="block mb-2 tracking-normal">
-                          Email address{" "}
-                          <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
-                        </label>
-                        <input
-                          type="email"
-                          className="form-field outline-none focus:border-blue-400 focus:border-2"
-                          placeholder="Your email address"
-                          {...register("loginEmail", {
-                            required: true,
-                            onBlur: (e) => setEnteredLoginEmail(e.target.value),
-                          })}
-                        />
-                      </div>
-                      <div>
-                        <label className="block mb-2 tracking-normal">
-                          Password{" "}
-                          <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
-                        </label>
-                        <input
-                          type="password"
-                          className="form-field outline-none focus:border-blue-400 focus:border-2"
-                          placeholder="Your password"
-                          {...register("loginPassword", { required: true })}
-                        />
-                        <p className="text-my-sm leading-relaxed text-gray-400 mt-2">
-                          Forgot password?{" "}
-                          <button
-                            // onClick={(e) => {
-                            //   e.preventDefault();
-                            //   resetPasswordWithEmail(enteredLoginEmail);
-                            // }}
-                            className="text-blue-500 hover:text-blue-700"
-                          >
-                            Reset now
-                          </button>
-                        </p>
-                      </div>
-
-                      <div>
-                        {(errors.loginEmail || errors.loginPassword) && (
-                          <p className="text-sm text-red-600 leading-loose">
-                            Please fill up the form properly.
-                          </p>
-                        )}
-                        {/* <div className="flex items-start space-x-4">
-                                                    {!user?.email && <input type="submit" className="btn-login" value="Login" />}
-                                                </div> */}
-                        {/* {authError ? (
-                          <div className="flex items-start space-x-4 mt-4">
+                      {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting,
+                        setFieldValue,
+                      }) => (
+                        <form
+                          onSubmit={handleSubmit}
+                          className="flex flex-col space-y-4"
+                        >
+                          <div>
+                            <label className="block mb-2 tracking-normal">
+                              Email address{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
                             <input
-                              type="submit"
-                              className="btn-login"
-                              value="Login"
+                              id="email"
+                              name="email"
+                              type="email"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="Your email address"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.email}
                             />
                           </div>
-                        ) : !adding ? (
-                          <div className="flex items-start space-x-4 mt-4">
+                          <div>
+                            <label className="block mb-2 tracking-normal">
+                              Password{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
                             <input
-                              type="submit"
-                              className="btn-login"
-                              value="Login"
+                              id="password"
+                              name="password"
+                              type="password"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="Your password"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.password}
                             />
+                            <p className="text-my-sm leading-relaxed text-gray-400 mt-2">
+                              Forgot password?{" "}
+                              <button
+                                // onClick={(e) => {
+                                //   e.preventDefault();
+                                //   resetPasswordWithEmail(enteredLoginEmail);
+                                // }}
+                                className="text-blue-500 hover:text-blue-700"
+                              >
+                                Reset now
+                              </button>
+                            </p>
                           </div>
-                        ) : (
-                          <div className="inline-block">
-                            <LoadingStatus status={status} />
+
+                          <div>
+                            <button
+                              type="submit"
+                              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                              Login
+                            </button>
                           </div>
-                        )} */}
-                        {/* {
-                                                    !adding ? (
-                                                        <div className="flex items-start space-x-4 mt-4">
-                                                            <input type="submit" className="btn-login" value="Login" />
-                                                        </div>
-                                                    ) : (<div className="inline-block">
 
-                                                        <LoadingStatus status={status} />
-
-
-                                                    </div>)
-                                                } */}
-                      </div>
-                    </form>
+                          <div></div>
+                        </form>
+                      )}
+                    </Formik>
 
                     <div className="hints text-my-sm leading-relaxed text-gray-500 mt-3">
                       <span className="font-semibold tracking-wider">
@@ -185,14 +174,6 @@ const LoginForm = () => {
                         </span>
                       </Link>
                     </div>
-
-                    {/* <div className="status">
-                      {user?.email && (
-                        <h5 className="mt-3 text-green-600">
-                          Currently logged in with {user?.email}
-                        </h5>
-                      )}
-                    </div> */}
 
                     <div className="divider mt-5 mb-8 flex flex-nowrap items-center font-my-title uppercase font-semibold text-true-gray-800">
                       <hr className="flex-auto border-my-primary border-dashed" />
