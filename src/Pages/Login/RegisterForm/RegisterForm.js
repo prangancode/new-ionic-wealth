@@ -1,55 +1,39 @@
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useEffect } from "react";
 import { RiAsterisk } from "react-icons/ri";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import loginImg from "../../../images/login/login-bg.jpg";
-import logoImg from "../../../images/Ionic Wealth logo-1.png";
 import "./RegisterForm.css";
-import useAuthContexts from "../../../Hooks/Firebase/useAuthContexts";
 import { Link } from "react-router-dom";
-import LoadingStatus from "../../Shared/LoadingStatus/LoadingStatus";
+import { Formik } from "formik";
+import { clearErrors, register } from "../../../actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
+import ProgressBar from "../../../component/progressBar/ProgressBar";
+import { Toastify } from "../../../actions/alertAction";
 
 const RegisterForm = () => {
-  const status = "Registering";
-  const [adding, setAdding] = useState(false);
-  const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
-  };
-
-  const { registerWithEmail } = useAuthContexts();
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = useForm();
-  const location = useLocation();
+  const dispatch = useDispatch();
   const history = useHistory();
 
-  const onSubmit = (data) => {
-    setAdding(true);
-    console.log(data);
-    registerWithEmail(
-      data.displayName,
-      data.email,
-      data.regPassword,
-      location,
-      history
-    ).finally(() => setAdding(false));
-  };
-
-  // const passRegex = /^(?=.[A-Z].[A-Z])(?=.[a-zA-Z])(?=.[!@#$&])(?=.[0-9].*[0-9]).{8,}$/;
-  const passRegex =
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])[A-Za-z\d" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"]{8,}$/;
-
-  // required field mark
-  const requiredMark = (
-    <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+  const { error, loading, isAuthenticated } = useSelector(
+    (state) => state.user
   );
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/");
+    }
+  }, [history, isAuthenticated]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(Toastify("error", error));
+      dispatch(clearErrors());
+    }
+  }, [error, dispatch]);
 
   return (
     <>
+      {loading && <ProgressBar />}
       <div id="main-wrapper" class="iw-login-register">
         <div class="container-register px-0">
           <div class="row-register min-vh-100">
@@ -92,143 +76,164 @@ const RegisterForm = () => {
                       </span>{" "}
                       Now
                     </h3>
-                    <form
-                      onSubmit={handleSubmit(onSubmit)}
-                      className="flex flex-col space-y-4"
-                    >
-                      <div>
-                        <label className="block mb-1 tracking-normal">
-                          Full name {requiredMark}
-                        </label>
-                        <input
-                          className="form-field"
-                          placeholder="Enter Your Full Name"
-                          {...register("displayName", { required: true })}
-                        />
-                      </div>
-                      <div>
-                        <label className="block mb-1 tracking-normal">
-                          Email address {requiredMark}
-                        </label>
-                        <input
-                          type="email"
-                          className="form-field"
-                          placeholder="Enter Your Email"
-                          {...register("email", { required: true })}
-                        />
-                      </div>
-                      <div>
-                        <label className="block mb-1 tracking-normal">
-                          Password {requiredMark}
-                        </label>
-                        <div className="flex relative items-center justify-items-center">
-                          <input
-                            type={passwordShown ? "text" : "password"}
-                            className="form-field "
-                            placeholder="******"
-                            {...register("regPassword", {
-                              required: true,
-                              pattern: passRegex,
-                            })}
-                          />
-                          <i
-                            className={`${
-                              passwordShown
-                                ? "fa fa-solid fa-eye "
-                                : "fa fa-solid fa-eye-slash text-gray-400"
-                            } absolute right-0 mr-1`}
-                            onClick={togglePasswordVisiblity}
-                          />
-                        </div>
 
-                        <p className="text-my-sm leading-normal text-gray-400 mt-2">
-                          <b>Password requirement:</b> Minimum eight characters,
-                          at least one letter, one number and one special
-                          character.
-                        </p>
-                      </div>
-                      <div>
-                        <label className="block mb-1 tracking-normal">
-                          Confirm password {requiredMark}
-                        </label>
-                        <input
-                          type="password"
-                          className="form-field"
-                          placeholder="Confirm password"
-                          {...register("confirmPassword", {
-                            required: true,
-                            validate: {
-                              matchesPreviousPassword: (value) => {
-                                const { regPassword } = getValues();
-                                return (
-                                  regPassword === value ||
-                                  "Passwords should match!"
-                                );
-                              },
-                            },
-                          })}
-                        />
-                        {errors.confirmPassword && (
-                          <span className="text-xs text-red-600">
-                            {errors.confirmPassword.message}
-                          </span>
-                        )}
-                      </div>
-                      {/* <div>
-					<label className="block mb-1 tracking-normal">Gender</label>
-					<select
-						className="form-field"
-						{...register('gender')}
-					>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
-				</div> */}
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          className="h-4 w-4"
-                          {...register("agreeTerms", { required: true })}
-                        />
-                        <label className="block tracking-normal leading-none">
-                          Agree to the{" "}
-                          <Link
-                            to="/terms-conditions"
-                            className="text-blue-600 hover:text-blue-700"
-                          >
-                            Terms and Conditions
-                          </Link>{" "}
-                          {requiredMark}
-                        </label>
-                      </div>
-                      <div>
-                        {(errors.displayName ||
-                          errors.email ||
-                          errors.regPassword ||
-                          errors.confirmPassword ||
-                          errors.agreeTerms) && (
-                          <p className="text-sm text-red-600 leading-loose">
-                            Please fill up the form properly.
-                          </p>
-                        )}
-                        {!adding ? (
-                          <div className="flex items-start space-x-4 mt-4">
+                    <Formik
+                      initialValues={{
+                        email: "",
+                        password: "",
+                      }}
+                      onSubmit={(values, { setSubmitting }) => {
+                        console.log("values", values);
+
+                        const data = new FormData();
+
+                        data.append("name", values.name);
+                        data.append("email", values.email);
+                        data.append("password", values.password);
+
+                        dispatch(register(data));
+
+                        // dispatch(login(values.email, values.password));
+                      }}
+                    >
+                      {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting,
+                        setFieldValue,
+                      }) => (
+                        <form
+                          onSubmit={handleSubmit}
+                          className="flex flex-col space-y-4"
+                        >
+                          <div>
+                            <label className="block mb-1 tracking-normal">
+                              Full name{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
                             <input
-                              type="submit"
-                              className="btn-register"
-                              value="Register"
+                              id="name"
+                              name="name"
+                              type="name"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="Enter Your Full Name"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.name}
                             />
                           </div>
-                        ) : (
-                          <div className="inline-block">
-                            <LoadingStatus status={status} />
+
+                          <div>
+                            <label className="block mb-1 tracking-normal">
+                              Email address{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
+                            <input
+                              id="email"
+                              name="email"
+                              type="email"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="Your email address"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.email}
+                            />
                           </div>
-                        )}
-                        {/* <div className="flex items-start space-x-4 mt-4">
-                                                    <input type="submit" className="btn-register" value="Register" />
-                                                </div> */}
-                      </div>
-                    </form>
+
+                          <div>
+                            <label className="block mb-1 tracking-normal">
+                              Password{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
+                            <input
+                              id="password"
+                              name="password"
+                              type="password"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="Your password"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.password}
+                            />
+                          </div>
+
+                          {/* <div>
+                            <label className="block mb-1 tracking-normal">
+                              Confirm Password{" "}
+                              <RiAsterisk className="inline text-my-xs text-red-500 transform -translate-y-1" />
+                            </label>
+                            <input
+                              id="confirmPassword"
+                              name="confirmPassword"
+                              type="passwconfirmPasswordord"
+                              className="form-field outline-none focus:border-blue-400 focus:border-2"
+                              placeholder="*****"
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              value={values.confirmPassword}
+                            />
+                          </div> */}
+
+                          {/* <div className="flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              className="h-4 w-4"
+                              {...register("agreeTerms", { required: true })}
+                            />
+                            <label className="block tracking-normal leading-none">
+                              Agree to the{" "}
+                              <Link
+                                to="/terms-conditions"
+                                className="text-blue-600 hover:text-blue-700"
+                              >
+                                Terms and Conditions
+                              </Link>{" "}
+                              {requiredMark}
+                            </label>
+                          </div> */}
+                          {/* <div>
+                          {(errors.displayName ||
+                            errors.email ||
+                            errors.regPassword ||
+                            errors.confirmPassword ||
+                            errors.agreeTerms) && (
+                            <p className="text-sm text-red-600 leading-loose">
+                              Please fill up the form properly.
+                            </p>
+                          )}
+                          {!adding ? (
+                            <div className="flex items-start space-x-4 mt-4">
+                              <input
+                                type="submit"
+                                className="btn-register"
+                                value="Register"
+                              />
+                            </div>
+                          ) : (
+                            <div className="inline-block">
+                              <LoadingStatus status={status} />
+                            </div>
+                          )}
+                          <div className="flex items-start space-x-4 mt-4">
+                                                      <input type="submit" className="btn-register" value="Register" />
+                                                  </div>
+                        </div> */}
+
+                          <div>
+                            <button
+                              type="submit"
+                              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                              Register
+                            </button>
+                          </div>
+                        </form>
+                      )}
+                    </Formik>
 
                     <div className="hints text-my-sm leading-relaxed text-gray-700 mt-3">
                       <span className="font-semibold tracking-wider">

@@ -72,51 +72,51 @@ const Dashboard = () => {
             </li>
 
             {/* {!isAdmin && (
-              <>
-                <li>
-                  <NavLink
-                    exact
-                    to={`${url}`}
-                    title="Dashboard home"
-                    activeStyle={linkActiveStyle}
-                    className={`${isAdmin ? "hidden" : "dashboard-menu-link"}`}
-                  >
-                    <span className="text-2xl">
-                      <RiDashboardFill />
-                    </span>
-                    <span className="hidden md:block pl-3">Dashboard</span>
-                  </NavLink>
-                </li>
-                <li className="border-t">
-                  <NavLink
-                    to={`${url}/add-review`}
-                    title="Review"
-                    activeStyle={linkActiveStyle}
-                    className={`${isAdmin ? "hidden" : "dashboard-menu-link"}`}
-                  >
-                    <span className="text-2xl">
-                      <RiMessage2Fill />
-                    </span>
-                    <span className="hidden md:block pl-3">Review Form</span>
-                  </NavLink>
-                </li>
+              <> */}
+            <li>
+              <NavLink
+                exact
+                to={`${url}`}
+                title="Dashboard home"
+                activeStyle={linkActiveStyle}
+                className="dashboard-menu-link"
+              >
+                <span className="text-2xl">
+                  <RiDashboardFill />
+                </span>
+                <span className="hidden md:block pl-3">Dashboard</span>
+              </NavLink>
+            </li>
+            <li className="border-t">
+              <NavLink
+                to={`${url}/add-review`}
+                title="Review"
+                activeStyle={linkActiveStyle}
+                className="dashboard-menu-link"
+              >
+                <span className="text-2xl">
+                  <RiMessage2Fill />
+                </span>
+                <span className="hidden md:block pl-3">Review Form</span>
+              </NavLink>
+            </li>
 
-                <li className="border-t">
-                  <NavLink
-                    to={`${url}/upload-document`}
-                    title="Upload Document"
-                    activeStyle={linkActiveStyle}
-                    className={`${isAdmin ? "hidden" : "dashboard-menu-link"}`}
-                  >
-                    <span className="text-2xl">
-                      <RiSecurePaymentFill />
-                    </span>
-                    <span className="hidden md:block pl-3">
-                      Upload your document
-                    </span>
-                  </NavLink>
-                </li>
-              </>
+            <li className="border-t">
+              <NavLink
+                to={`${url}/upload-document`}
+                title="Upload Document"
+                activeStyle={linkActiveStyle}
+                className="dashboard-menu-link"
+              >
+                <span className="text-2xl">
+                  <RiSecurePaymentFill />
+                </span>
+                <span className="hidden md:block pl-3">
+                  Upload your document
+                </span>
+              </NavLink>
+            </li>
+            {/* </>
             )} */}
 
             <li className="border-t">

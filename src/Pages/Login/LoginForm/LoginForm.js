@@ -27,13 +27,12 @@ const LoginForm = () => {
     }
   }, [error]);
 
-  useEffect(() => {
-    // if (isAuthenticated) {
-    if (user?.role === "user") {
-      history.push("/dashboard");
-    }
-    // }
-  }, [history, user]);
+  //   useEffect(() => {
+  //     if (user?.role === "user") {
+
+  //       history.push("/dashboard");
+  //     }
+  //   }, [history, user]);
 
   console.log("user :>> ", user);
   return (

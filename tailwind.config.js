@@ -21,119 +21,129 @@
 //   plugins: [],
 // }
 
-const colors = require('tailwindcss/colors');
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}",],
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'class', // or 'media' or 'class'
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     screens: {
-      'xs': '480px',
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1400px',
+      xs: "480px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1400px",
     },
     container: {
       center: true,
-      padding: '1rem',
+      padding: "1rem",
     },
     extend: {
       colors: {
-        transparent: 'transparent',
-        current: 'currentColor',
-        'dark-variant': '#28282B',
-        'true-gray': colors.trueGray,
-        'my-dark-gray': 'var(--clr-dark-gray)',
-        'my-yellow-cream': 'var(--clr-yellow-cream)',
-        'my-google': 'var(--clr-google)',
-        'my-github': 'var(--clr-github)',
-        'my-twitter': 'var(--clr-twitter)',
-        'my-facebook': 'var(--clr-facebook)',
-        'my-primary': {
-          light: 'var(--clr-primary-light)',
-          DEFAULT: 'var(--clr-primary)',
-          dark: 'var(--clr-primary-dark)'
+        transparent: "transparent",
+        current: "currentColor",
+        "dark-variant": "#28282B",
+        "true-gray": colors.trueGray,
+        "my-dark-gray": "var(--clr-dark-gray)",
+        "my-yellow-cream": "var(--clr-yellow-cream)",
+        "my-google": "var(--clr-google)",
+        "my-github": "var(--clr-github)",
+        "my-twitter": "var(--clr-twitter)",
+        "my-facebook": "var(--clr-facebook)",
+        "my-primary": {
+          light: "var(--clr-primary-light)",
+          DEFAULT: "var(--clr-primary)",
+          dark: "var(--clr-primary-dark)",
         },
-        'my-secondary': {
-          light: 'var(--clr-secondary-light)',
-          DEFAULT: 'var(--clr-secondary)',
-          dark: 'var(--clr-secondary-dark)'
+        "my-secondary": {
+          light: "var(--clr-secondary-light)",
+          DEFAULT: "var(--clr-secondary)",
+          dark: "var(--clr-secondary-dark)",
         },
       },
       fontFamily: {
-        'my-body': ['var(--font-body)'],
-        'my-title': ['var(--font-title)'],
+        "my-body": ["var(--font-body)"],
+        "my-title": ["var(--font-title)"],
       },
       maxWidth: {
-        'clear': 'calc(100% - 2rem)',
-        'half': '50%',
+        clear: "calc(100% - 2rem)",
+        half: "50%",
       },
       letterSpacing: {
-        'my-tiny': '1px',
+        "my-tiny": "1px",
       },
       fontSize: {
-        'my-sm': ['15px', {
-          lineHeight: '14px',
-        }],
-        'my-xs': ['10px', {
-          lineHeight: '12px',
-        }],
+        "my-sm": [
+          "15px",
+          {
+            lineHeight: "14px",
+          },
+        ],
+        "my-xs": [
+          "10px",
+          {
+            lineHeight: "12px",
+          },
+        ],
       },
       boxShadow: {
-        'my-x': '0 4px 20px 0px rgba(0, 0, 0, 0.5)',
-        'my-y-heavy': '0 20px 10px 0px rgba(0, 0, 0, 1)',
-        'my-around': '0 2px 15px 0px rgba(0, 0, 0, 0.2)',
+        "my-x": "0 4px 20px 0px rgba(0, 0, 0, 0.5)",
+        "my-y-heavy": "0 20px 10px 0px rgba(0, 0, 0, 1)",
+        "my-around": "0 2px 15px 0px rgba(0, 0, 0, 0.2)",
       },
       minHeight: {
-        '250px': '250px',
-        'vh-50': '50vh',
-        'vh-100': '100vh'
+        "250px": "250px",
+        "vh-50": "50vh",
+        "vh-100": "100vh",
         // 'vh-55': '55vh',
         // 'vh-60': '60vh',
         // 'vh-70': '70vh',
       },
       backgroundImage: {
-        'my-gradient-radial': 'radial-gradient(circle, rgba(0,0,0,0.80), transparent, transparent)',
+        "my-gradient-radial":
+          "radial-gradient(circle, rgba(0,0,0,0.80), transparent, transparent)",
       },
       zIndex: {
-        'neg1': '-1',
-        'pos1': '1',
-        'highest': '99999',
+        neg1: "-1",
+        pos1: "1",
+        highest: "99999",
       },
       scale: {
-        'my-80': '.8',
+        "my-80": ".8",
       },
       keyframes: {
         myMoveUp: {
-          'from': { opacity: 0, transform: 'translateY(50px)' },
-          'to': { opacity: 1, transform: 'translateY(0px)' },
+          from: { opacity: 0, transform: "translateY(50px)" },
+          to: { opacity: 1, transform: "translateY(0px)" },
         },
         myHeartBeat: {
-          '0%, 28%, 70%': { transform: 'scale(1)' },
-          '14%, 42%': { transform: 'scale(1.3)' },
+          "0%, 28%, 70%": { transform: "scale(1)" },
+          "14%, 42%": { transform: "scale(1.3)" },
         },
       },
       animation: {
-        myMoveUp: 'myMoveUp var(--duration, 0.5s) var(--easing, ease-in-out) var(--fill, forwards) var(--delay, 0s)',
-        myHeartBeat: 'myHeartBeat var(--duration, 1.3s) ease-in-out infinite 1s',
-      }
+        myMoveUp:
+          "myMoveUp var(--duration, 0.5s) var(--easing, ease-in-out) var(--fill, forwards) var(--delay, 0s)",
+        myHeartBeat:
+          "myHeartBeat var(--duration, 1.3s) ease-in-out infinite 1s",
+      },
     },
   },
   variants: {
     extend: {
-      scale: ['group-hover'],
-      visibility: ['hover', 'focus', 'group-hover', 'group-focus'],
-      opacity: ['disabled'],
-      pointerEvents: ['disabled'],
+      scale: ["group-hover"],
+      visibility: ["hover", "focus", "group-hover", "group-focus"],
+      opacity: ["disabled"],
+      pointerEvents: ["disabled"],
     },
   },
   // corePlugins: {
   //   container: false
   // },
   plugins: [
+    require("@tailwindcss/forms"),
     // function ({ addComponents }) {
     //   addComponents({
     //     '.container': {
@@ -159,4 +169,4 @@ module.exports = {
     //   })
     // }
   ],
-}
+};

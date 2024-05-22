@@ -27,48 +27,53 @@
 
 // export default App;
 
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AuthProvider from './contexts/AuthProvider/AuthProvider';
-import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
-import MainAdminDashboard from './Pages/Dashboard/Dashboard/MainAdminDashboard';
-import ContentCA from './Pages/Dashboard/DashboardHome/ContentCA';
-import ContactUs from './Pages/ContactUs/ContactUs';
-import Home from './Pages/Home/Home/Home';
-import LoginForm from './Pages/Login/LoginForm/LoginForm';
-import RegisterForm from './Pages/Login/RegisterForm/RegisterForm';
-import ClientAgreement from './Pages/Policies/ClientAgreement/ClientAgreement';
-import PrivacyPolicy from './Pages/Policies/PrivacyPolicy/PrivacyPolicy';
-import TermsandConditions from './Pages/Policies/TermsandConditions/TermsandConditions';
-import ReviewForm from './Pages/Review/ReviewForm';
-import ServiceDetailsList from './Pages/ServiceDetailsList/ServiceDetailsList/ServiceDetailsList';
-import PreLoader from './Pages/Shared/PreLoader/PreLoader';
-import StartFromTop from './Pages/Shared/StartFromTop/StartFromTop';
-import Testimonial from './Pages/Testimonial/Testimonial';
-import Webviewer from './Pages/Webviewer/Webviewer';
-const LazyContactUs = React.lazy(() => import('./Pages/ContactUs/ContactUs'));
-const LazyHome = React.lazy(() => import('./Pages/Home/Home/Home'));
-
-
+import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import MainAdminDashboard from "./Pages/Dashboard/Dashboard/MainAdminDashboard";
+import ContentCA from "./Pages/Dashboard/DashboardHome/ContentCA";
+import ContactUs from "./Pages/ContactUs/ContactUs";
+import Home from "./Pages/Home/Home/Home";
+import LoginForm from "./Pages/Login/LoginForm/LoginForm";
+import RegisterForm from "./Pages/Login/RegisterForm/RegisterForm";
+import ClientAgreement from "./Pages/Policies/ClientAgreement/ClientAgreement";
+import PrivacyPolicy from "./Pages/Policies/PrivacyPolicy/PrivacyPolicy";
+import TermsandConditions from "./Pages/Policies/TermsandConditions/TermsandConditions";
+import ReviewForm from "./Pages/Review/ReviewForm";
+import ServiceDetailsList from "./Pages/ServiceDetailsList/ServiceDetailsList/ServiceDetailsList";
+import PreLoader from "./Pages/Shared/PreLoader/PreLoader";
+import StartFromTop from "./Pages/Shared/StartFromTop/StartFromTop";
+import Testimonial from "./Pages/Testimonial/Testimonial";
+import Webviewer from "./Pages/Webviewer/Webviewer";
+import MainDashboard from "./Pages/Dashboard/Dashboard/MainDashboard";
+import AddDocuments from "./Pages/Dashboard/UploadDocument/AddDocuments";
+const LazyContactUs = React.lazy(() => import("./Pages/ContactUs/ContactUs"));
+const LazyHome = React.lazy(() => import("./Pages/Home/Home/Home"));
 
 function App() {
   return (
     <Router>
-       <Switch>
-         <Route exact path="/" component={Home} />
-         <Route exact path="/allservices" component={ServiceDetailsList} />
-         <Route exact path="/contactus" component={ContactUs} />
-         <Route exact path="/testimonial" component={Testimonial} />
-         <Route exact path="/reviewform" component={ReviewForm} />
-         <Route exact path="/login" component={LoginForm} />
-         <Route exact path="/register" component={RegisterForm} />
-         <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-         <Route exact path="/terms-conditions" component={TermsandConditions} />
-         <Route exact path="/dashboard" component={Dashboard} />
-         <Route exact path="/admindashboard" component={MainAdminDashboard} />
-         <Route exact path="/pdf" component={Webviewer} />
-       </Switch>
-     </Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/allservices" component={ServiceDetailsList} />
+        <Route exact path="/contactus" component={ContactUs} />
+        <Route exact path="/testimonial" component={Testimonial} />
+        <Route exact path="/reviewform" component={ReviewForm} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/register" component={RegisterForm} />
+        <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+        <Route exact path="/terms-conditions" component={TermsandConditions} />
+        {/* <Route exact path="/dashboard" component={Dashboard} /> */}
+        {/* <Route exact path="/dashboard" component={MainDashboard} /> */}
+        <Route path="/dashboard">
+          <MainDashboard />
+        </Route>
+
+        {/* <Route exact path="/admindashboard" component={MainAdminDashboard} /> */}
+        <Route exact path="/pdf" component={Webviewer} />
+      </Switch>
+    </Router>
     // <div >
     //   <AuthProvider>
     //     <Router>

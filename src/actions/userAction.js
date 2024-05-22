@@ -52,6 +52,10 @@ export const login = (email, password) => async (dispatch) => {
       config
     );
 
+    if (data?.success === true) {
+      dispatch(Toastify("success", "Successfully logged in!"));
+    }
+
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
 
     localStorage.setItem("userInfo", JSON.stringify(data.user));

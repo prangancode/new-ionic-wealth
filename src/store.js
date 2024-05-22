@@ -10,6 +10,7 @@ import {
   productsReducer,
 } from "./reducers/productReducer";
 import { profileReducer, userReducer } from "./reducers/userReducer";
+import { newDocumentReducer } from "./reducers/documentReducer";
 // import persistedReducer from "./reduxPersist";
 
 const reducer = combineReducers({
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   user: userReducer,
   profile: profileReducer,
   cart: cartReducer,
+  document: newDocumentReducer,
 });
 
 let initialState = {
