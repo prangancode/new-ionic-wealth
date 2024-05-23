@@ -1,7 +1,10 @@
 import { Formik } from "formik";
 import React from "react";
+import { createDocument } from "../../../actions/documentAction";
+import { useDispatch } from "react-redux";
 
 const UploadDocumentForm = () => {
+  const dispatch = useDispatch();
   return (
     <>
       <div className="p-5 bg-white rounded-md shadow-md">
@@ -23,15 +26,15 @@ const UploadDocumentForm = () => {
           onSubmit={(values, { setSubmitting }) => {
             console.log("values", values);
 
-            // const data = new FormData();
+            const data = new FormData();
 
-            // data.append("name", values.name);
-            // data.append("email", values.email);
-            // data.append("password", values.password);
+            data.append("name", values.name);
+            data.append("email", values.email);
+            data.append("clientAgreement", values.clientAgreement);
+            data.append("dataProtection", values.dataProtection);
+            data.append("riskProfiler", values.riskProfiler);
 
-            // dispatch(register(data));
-
-            // dispatch(login(values.email, values.password));
+            dispatch(createDocument(values));
           }}
         >
           {({

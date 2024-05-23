@@ -7,17 +7,17 @@ import {
   CLEAR_ERRORS,
 } from "../constants/documentConstants";
 
-// Create DOCUMENT
+// Create document
 export const createDocument = (documentData) => async (dispatch) => {
   try {
     dispatch({ type: NEW_DOCUMENT_REQUEST });
 
     const config = {
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "multipart/form-data" },
     };
 
     const { data } = await axios.post(
-      `/api/v1/admin/DOCUMENT/new`,
+      `/api/v1/document/new`,
       documentData,
       config
     );

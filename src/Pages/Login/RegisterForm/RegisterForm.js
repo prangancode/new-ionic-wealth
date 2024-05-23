@@ -20,7 +20,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      history.push("/");
+      history.push("/dashboard");
     }
   }, [history, isAuthenticated]);
 

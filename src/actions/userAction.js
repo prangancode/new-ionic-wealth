@@ -73,6 +73,10 @@ export const register = (userData) => async (dispatch) => {
 
     const { data } = await axios.post(`/api/v1/register`, userData, config);
 
+    if (data.success === true) {
+      dispatch(Toastify("success", "Successfully registered!"));
+    }
+
     dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });
     localStorage.setItem("userInfo", JSON.stringify(data.user));
   } catch (error) {
