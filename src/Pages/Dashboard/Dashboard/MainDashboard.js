@@ -4,13 +4,10 @@ import AdminDashboard from "../AdminDashboard/AdminDashboard";
 import UsersDashboard from "./UsersDashboard/UsersDashboard";
 
 const MainDashboard = () => {
-  const { error, loading, isAuthenticated, user } = useSelector(
-    (state) => state.user
-  );
-  console.log("user", user);
+  const { user } = useSelector((state) => state.user);
   return (
     <>
-      {user.role === "user" ? (
+      {user?.role === "user" ? (
         <>
           <UsersDashboard />
         </>

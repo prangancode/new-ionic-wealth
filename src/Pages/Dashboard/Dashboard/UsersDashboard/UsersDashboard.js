@@ -21,22 +21,30 @@ import {
   UserGroupIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink, Route, Switch, useRouteMatch } from "react-router-dom";
+import {
+  NavLink,
+  Route,
+  Switch,
+  useHistory,
+  useRouteMatch,
+} from "react-router-dom";
 import NewDashboardHome from "../../DashboardHome/NewDashboardHome";
 import DocumentList from "../../UploadDocument/DocumentList";
 import UploadDocumentForm from "../../UploadDocument/UploadDocumentForm";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../../actions/userAction";
 
-const user = {
-  name: "Chelsea Hagon",
-  email: "chelsea.hagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+// const user = {
+//   name: "Chelsea Hagon",
+//   email: "chelsea.hagon@example.com",
+//   imageUrl:
+//     "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+// };
 
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Your Profile", href: "#", action: "PROFILE" },
+  { name: "Settings", href: "#", action: "SETTINGS" },
+  { name: "Sign out", href: "#", action: "SIGN_OUT" },
 ];
 const communities = [
   { name: "Movies", href: "#" },
@@ -78,7 +86,15 @@ function classNames(...classes) {
 }
 
 export default function UsersDashboard() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
   let { path, url } = useRouteMatch();
+
+  const handleSignOut = () => {
+    console.log("sign out");
+    dispatch(logout(history));
+  };
 
   const navigation = [
     { name: "Home", href: "#", icon: HomeIcon, to: `${url}`, current: true },
@@ -202,11 +218,27 @@ export default function UsersDashboard() {
                         <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2">
                           <span className="absolute -inset-1.5" />
                           <span className="sr-only">Open user menu</span>
-                          <img
-                            className="h-8 w-8 rounded-full"
-                            src={user.imageUrl}
-                            alt=""
-                          />
+                          {user?.imageUrl ? (
+                            <>
+                              <img
+                                className="h-8 w-8 rounded-full"
+                                src={user.imageUrl}
+                                alt=""
+                              />
+                            </>
+                          ) : (
+                            <>
+                              <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100">
+                                <svg
+                                  className="h-full w-full text-gray-300"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                </svg>
+                              </span>
+                            </>
+                          )}
                         </Menu.Button>
                       </div>
                       <Transition
@@ -218,19 +250,22 @@ export default function UsersDashboard() {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white  shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <a
-                                  href={item.href}
+                                <button
+                                  onClick={
+                                    item.action === "SIGN_OUT" && handleSignOut
+                                  }
+                                  // href={item.href}
                                   className={classNames(
                                     active ? "bg-gray-100" : "",
-                                    "block px-4 py-2 text-sm text-gray-700"
+                                    "block px-4 py-2 text-sm text-gray-700 w-full text-start"
                                   )}
                                 >
                                   {item.name}
-                                </a>
+                                </button>
                               )}
                             </Menu.Item>
                           ))}
@@ -269,11 +304,27 @@ export default function UsersDashboard() {
                 <div className="border-t border-gray-200 pt-4">
                   <div className="mx-auto flex max-w-3xl items-center px-4 sm:px-6">
                     <div className="flex-shrink-0">
-                      <img
-                        className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
-                        alt=""
-                      />
+                      {user?.imageUrl ? (
+                        <>
+                          <img
+                            className="h-10 w-10 rounded-full"
+                            src={user.imageUrl}
+                            alt=""
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <span className="inline-block h-8 w-8 overflow-hidden rounded-full bg-gray-100">
+                            <svg
+                              className="h-full w-full text-gray-300"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                          </span>
+                        </>
+                      )}
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium text-gray-800">

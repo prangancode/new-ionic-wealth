@@ -113,7 +113,7 @@ export const logout = (history) => async (dispatch) => {
     if (success === true) {
       localStorage.removeItem("userInfo");
       dispatch(Toastify("success", message));
-      history.push("/signin");
+      history.push("/login");
     }
   } catch (error) {
     dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });

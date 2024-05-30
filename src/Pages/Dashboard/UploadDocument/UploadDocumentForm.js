@@ -1,12 +1,38 @@
 import { Formik } from "formik";
-import React from "react";
-import { createDocument } from "../../../actions/documentAction";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import {
+  clearErrors,
+  createDocument,
+  documentFormReset,
+} from "../../../actions/documentAction";
+import { useDispatch, useSelector } from "react-redux";
+import { Toastify } from "../../../actions/alertAction";
+import ProgressBar from "../../../component/progressBar/ProgressBar";
+import { useHistory } from "react-router-dom";
 
 const UploadDocumentForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  const { loading, error, success } = useSelector((state) => state.document);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(Toastify("error", error));
+      dispatch(clearErrors());
+    }
+  }, [error, dispatch]);
+
+  useEffect(() => {
+    if (success === true) {
+      history.push("/dashboard/document-list");
+    }
+    dispatch(documentFormReset());
+  }, [history, success]);
+
   return (
     <>
+      {loading && <ProgressBar />}
       <div className="p-5 bg-white rounded-md shadow-md">
         <h2 className="text-base font-semibold leading-7 text-gray-900">
           Personal Information
@@ -17,8 +43,8 @@ const UploadDocumentForm = () => {
 
         <Formik
           initialValues={{
-            name: "",
-            email: "",
+            name: user.name,
+            email: user.email,
             clientAgreement: "",
             dataProtection: "",
             riskProfiler: "",
@@ -62,9 +88,11 @@ const UploadDocumentForm = () => {
                       name="name"
                       id="name"
                       autoComplete="given-name"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:bg-gray-100"
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      value={user.name}
+                      disabled={true}
                     />
                   </div>
                 </div>
@@ -82,9 +110,11 @@ const UploadDocumentForm = () => {
                       name="email"
                       type="email"
                       autoComplete="email"
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:bg-gray-100"
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      value={user.email}
+                      disabled={true}
                     />
                   </div>
                 </div>
@@ -102,17 +132,6 @@ const UploadDocumentForm = () => {
                       type="file"
                       onChange={(e) => {
                         setFieldValue("clientAgreement", e.target.files[0]);
-
-                        // const reader = new FileReader();
-
-                        // reader.onload = () => {
-                        //   if (reader.readyState === 2) {
-                        //     //   setAvatarPreview(reader.result);
-                        //     setAvatar(reader.result);
-                        //   }
-                        // };
-
-                        // reader.readAsDataURL(e.target.files[0]);
                       }}
                       required
                       className="block w-full text-sm text-slate-500
@@ -137,23 +156,13 @@ const UploadDocumentForm = () => {
                       type="file"
                       onChange={(e) => {
                         setFieldValue("dataProtection", e.target.files[0]);
-
-                        // const reader = new FileReader();
-
-                        // reader.onload = () => {
-                        //   if (reader.readyState === 2) {
-                        //     //   setAvatarPreview(reader.result);
-                        //     setAvatar(reader.result);
-                        //   }
-                        // };
-
-                        // reader.readAsDataURL(e.target.files[0]);
                       }}
                       className="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4 file:rounded-md
                     file:border-0 file:text-sm file:font-semibold
                     file:bg-indigo-50 file:text-indigo-700
                     hover:file:bg-indigo-100 focus:outline-none"
+                      required
                     />
                   </div>
                 </div>
@@ -171,23 +180,13 @@ const UploadDocumentForm = () => {
                       type="file"
                       onChange={(e) => {
                         setFieldValue("riskProfiler", e.target.files[0]);
-
-                        // const reader = new FileReader();
-
-                        // reader.onload = () => {
-                        //   if (reader.readyState === 2) {
-                        //     //   setAvatarPreview(reader.result);
-                        //     setAvatar(reader.result);
-                        //   }
-                        // };
-
-                        // reader.readAsDataURL(e.target.files[0]);
                       }}
                       className="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4 file:rounded-md
                     file:border-0 file:text-sm file:font-semibold
                     file:bg-indigo-50 file:text-indigo-700
                     hover:file:bg-indigo-100 focus:outline-none"
+                      required
                     />
                   </div>
                 </div>
@@ -200,10 +199,11 @@ const UploadDocumentForm = () => {
                     Reset
                   </button>
                   <button
+                    disabled={loading}
                     type="submit"
-                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-300"
                   >
-                    Save
+                    {loading ? "Uploading" : "Upload"}
                   </button>
                 </div>
               </div>
