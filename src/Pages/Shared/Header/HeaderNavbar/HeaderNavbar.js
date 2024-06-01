@@ -7,7 +7,8 @@ import MobileMenu from '../MobileMenu/MobileMenu';
 import { RiLock2Line } from 'react-icons/ri';
 import logos from '../../../../images/Ionic-Wealth-Logo-1000px-LIGHT.png';
 import logos1 from '../../../../images/Ionic Wealth adobe-1.png';
-import { PhoneIcon, LocationMarkerIcon, AtSymbolIcon, ChatAltIcon } from '@heroicons/react/solid'
+import { PhoneIcon, MapPinIcon, AtSymbolIcon, ChatBubbleLeftIcon,} from '@heroicons/react/24/solid'
+
 
 const HeaderNavbar = () => {
 
@@ -44,12 +45,12 @@ const HeaderNavbar = () => {
                         <div className="dlab-topbar-left">
                             <ul className="flex">
                                 <li className='flex items-center mr-10'><PhoneIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> 001 1234 6789</li>
-                                <li className='flex items-center mr-10'><LocationMarkerIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> 145 St Vincent Street, Glasgow, G2 5JF</li>
+                                <li className='flex items-center mr-10'><MapPinIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> 145 St Vincent Street, Glasgow, G2 5JF</li>
                             </ul>
                         </div>
                         <div className="dlab-topbar-right">
                             <ul className='flex'>
-                                <li className='flex items-center mr-10'><ChatAltIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> ionic.wealth</li>
+                                <li className='flex items-center mr-10'><ChatBubbleLeftIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> ionic.wealth</li>
                                 <li className='flex items-center mr-10'><AtSymbolIcon className=" h-5 w-5 mr-1" aria-hidden="true" /> iw@example.com</li>
                             </ul>
                         </div>

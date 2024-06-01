@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
-import { HomeIcon, ChevronUpIcon } from "@heroicons/react/solid";
+import { HomeIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
 import "./MainMenu.css";
 import useTheme from "../../../../Hooks/DarkMode/useTheme";
-import { SunIcon } from "@heroicons/react/solid";
-import { MoonIcon } from "@heroicons/react/solid";
+import { SunIcon } from "@heroicons/react/24/solid";
+import { MoonIcon } from "@heroicons/react/24/solid";
 import { FiLogOut } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";

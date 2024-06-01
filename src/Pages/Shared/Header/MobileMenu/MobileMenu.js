@@ -3,7 +3,7 @@ import { slide as Menus } from 'react-burger-menu';
 import './MobileMenu.css';
 import { NavLink } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon, HomeIcon } from '@heroicons/react/solid'
+import { ChevronDownIcon, HomeIcon } from '@heroicons/react/24/solid'
 // import MainMenu from '../MainMenu/MainMenu';
 import { FiX } from 'react-icons/fi';
 import { Link } from 'react-router-dom';

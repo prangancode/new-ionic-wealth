@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LocationMarkerIcon, PhoneIcon, InboxInIcon } from '@heroicons/react/solid'
+import { MapPinIcon, PhoneIcon, InboxArrowDownIcon } from '@heroicons/react/24/solid'
 
 
 import "./Footer.css"
@@ -40,9 +40,9 @@ const Footer = () => {
                                 <div className="widget widget_getintuch">
                                     <h5 className="mb-8 text-white ">Contact us</h5>
                                     <ul>
-                                        <li className='flex items-center justify-center'><span><LocationMarkerIcon className="h-8 w-8 text-blue-500" /></span><strong>address</strong> #8901 Marmora Road Chi Minh City, Vietnam </li>
+                                        <li className='flex items-center justify-center'><span><MapPinIcon className="h-8 w-8 text-blue-500" /></span><strong>address</strong> #8901 Marmora Road Chi Minh City, Vietnam </li>
                                         <li><span><PhoneIcon className="h-8 w-8 text-blue-500" /></span><strong>phone</strong>0800-123456 (24/7 Support Line)</li>
-                                        <li><span><InboxInIcon className="h-8 w-8 text-blue-500" /></span><strong>email</strong>info@example.com</li>
+                                        <li><span><InboxArrowDownIcon className="h-8 w-8 text-blue-500" /></span><strong>email</strong>info@example.com</li>
                                     </ul>
                                 </div>
                             </div>
@@ -62,12 +62,13 @@ const Footer = () => {
                                         </form>
                                     </div>
                                     <ul className="list-inline flex m-0">
-                                        <li><Link to={"#"} className="site-button facebook circle mr-1"><i className="fa fa-facebook"></i></Link></li>
-                                        <li><Link to={"#"} className="site-button google-plus circle mr-1"><i className="fa fa-google-plus"></i></Link></li>
-                                        <li><Link to={"#"} className="site-button linkedin circle mr-1"><i className="fa fa-linkedin"></i></Link></li>
-                                        <li><Link to={"#"} className="site-button instagram circle mr-1"><i className="fa fa-instagram"></i></Link></li>
-                                        <li><Link to={"#"} className="site-button twitter circle mr-1"><i className="fa fa-twitter"></i></Link></li>
+                                        <li><Link to={"#"} className="site-button facebook circle mr-1"><i className="fab fa-facebook-f"></i></Link></li>
+                                        <li><Link to={"#"} className="site-button google-plus circle mr-1"><i className="fab fa-google-plus-g"></i></Link></li>
+                                        <li><Link to={"#"} className="site-button linkedin circle mr-1"><i className="fab fa-linkedin-in"></i></Link></li>
+                                        <li><Link to={"#"} className="site-button instagram circle mr-1"><i className="fab fa-instagram"></i></Link></li>
+                                        <li><Link to={"#"} className="site-button twitter circle mr-1"><i className="fab fa-twitter"></i></Link></li>
                                     </ul>
+
                                 </div>
                             </div>
                         </div>

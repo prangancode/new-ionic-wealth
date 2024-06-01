@@ -3,7 +3,7 @@ import servicebanner from '../../../../images/serviceImg/service-01.jpg'
 import servicesmallbanner from '../../../../images/serviceImg/service-02.jpg'
 
 import { Disclosure, Transition } from '@headlessui/react'
-import { ChevronUpIcon } from '@heroicons/react/solid';
+import { ChevronUpIcon } from '@heroicons/react/24/solid';
 
 const Content = () => {
     return (

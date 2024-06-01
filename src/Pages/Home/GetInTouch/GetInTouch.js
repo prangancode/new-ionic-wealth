@@ -1,8 +1,9 @@
 import React from 'react';
 import bg3 from '../../../images/background/IW-Image-bg3.jpg';
 import './GetInTouch.css'
-import { UserIcon, DeviceMobileIcon, MailIcon, CheckIcon, UploadIcon, PencilAltIcon } from '@heroicons/react/solid'
-import { CheckCircleIcon } from '@heroicons/react/solid'
+// import { UserIcon, DeviceMobileIcon, MailIcon, CheckIcon, UploadIcon, PencilAltIcon } from '@heroicons/react/24/solid'
+import { UserIcon, DevicePhoneMobileIcon, EnvelopeOpenIcon, CheckIcon, ArrowUpTrayIcon, PencilSquareIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 
 const GetInTouch = () => {
     return (
@@ -39,7 +40,7 @@ const GetInTouch = () => {
                                     <div className="col-lg-6-getintouch-form">
                                         <div className="form-group">
                                             <div className="input-group">
-                                                <span className="input-group-addon dark:bg-slate-900"><DeviceMobileIcon className='h-8 w-8' /></span>
+                                                <span className="input-group-addon dark:bg-slate-900"><DevicePhoneMobileIcon className='h-8 w-8' /></span>
                                                 <input name="dzOther[Phone]" type="text" required className="form-control outline-none dark:bg-slate-900" placeholder="Phone" />
                                             </div>
                                         </div>
@@ -47,7 +48,7 @@ const GetInTouch = () => {
                                     <div className="col-lg-12-getintouch-form">
                                         <div className="form-group">
                                             <div className="input-group">
-                                                <span className="input-group-addon dark:bg-slate-900"><MailIcon className='h-8 w-8' /></span>
+                                                <span className="input-group-addon dark:bg-slate-900"><EnvelopeOpenIcon className='h-8 w-8' /></span>
                                                 <input name="dzEmail" type="email" className="form-control outline-none dark:bg-slate-900" required placeholder="Your Email Id" />
                                             </div>
                                         </div>
@@ -63,7 +64,7 @@ const GetInTouch = () => {
                                     <div className="col-lg-6-getintouch-form">
                                         <div className="form-group">
                                             <div className="input-group">
-                                                <span className="input-group-addon dark:bg-slate-900"><UploadIcon className='h-8 w-8' /></span>
+                                                <span className="input-group-addon dark:bg-slate-900"><ArrowUpTrayIcon className='h-8 w-8' /></span>
                                                 <input name="dzOther[Subject]" type="text" required className="form-control outline-none dark:bg-slate-900" placeholder="Upload File" />
                                             </div>
                                         </div>
@@ -71,7 +72,7 @@ const GetInTouch = () => {
                                     <div className="col-lg-12-getintouch-form">
                                         <div className="form-group">
                                             <div className="input-group">
-                                                <span className="input-group-addon dark:bg-slate-900"><PencilAltIcon className='h-8 w-8' /></span>
+                                                <span className="input-group-addon dark:bg-slate-900"><PencilSquareIcon className='h-8 w-8' /></span>
                                                 <textarea name="dzMessage" rows="4" className="form-control outline-none dark:bg-slate-900" required placeholder="Tell us about your project or idea"></textarea>
                                             </div>
                                         </div>

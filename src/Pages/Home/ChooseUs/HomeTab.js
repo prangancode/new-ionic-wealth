@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './HomeTab.css'
 import pic5 from './../../../images/our-work/pic6.jpg';
 import pic6 from './../../../images/our-work/pic7.jpg';
-import { CheckCircleIcon } from '@heroicons/react/solid'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 const Para = () => {
     return (
         <>
