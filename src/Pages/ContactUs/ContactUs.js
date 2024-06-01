@@ -3,6 +3,7 @@ import Breadcrumbs from '../ServiceDetailsList/BreadcrumbSL/Breadcrumbs';
 import Footer from '../Shared/Footer/Footer';
 import HeaderNavbar from '../Shared/Header/HeaderNavbar/HeaderNavbar';
 import './ContactUs.css';
+import ContactImg from "../../images/our-team/pic6.jpg"
 const ContactUs = () => {
     return (
         <>
@@ -26,7 +27,7 @@ const ContactUs = () => {
                                 <h3 className="contact-page-details__title">Get to Know About Company</h3>
                                 <div className="contact-page-details__content">
                                     <div className="contact-page-details__content-img">
-                                        <img src="http://layerdrops.com/conult/assets/images/resources/contact-page-details-content-img.jpg" alt="" />
+                                        <img src={ContactImg} alt="" />
                                     </div>
                                     <div className="contact-page-details__content-text-box">
                                         <p className="contact-page-details__content-text-1">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>

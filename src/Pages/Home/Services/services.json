@@ -2,37 +2,43 @@
     {
         "title": "Financial Planning",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-1.jpg",
+        "image1": "https://images.unsplash.com/photo-1434626881859-194d67b2b86f?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-fax fa-xs text-white"
+        "icon": "fas fa-calculator fa-xs text-white"
     },
     {
         "title": "Protection",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-2.jpg",
+        "image1": "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?q=80&w=1402&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-shield fa-xs text-white"
+        "icon": "fas fa-shield-alt fa-xs text-white"
     },
     {
         "title": "Investment Management",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-3.jpg",
+        "image1": "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-money fa-xs text-white"
+        "icon": "fas fa-chart-pie fa-xs text-white"
     },
     {
         "title": "Tax Planning",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-4.jpg",
+        "image1": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=1426&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-money-check fa-xs text-white"
+        "icon": "fas fa-file-invoice-dollar fa-xs text-white"
     },
     {
         "title": "Banking Advising",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-5.jpg",
+        "image1": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-bank fa-xs text-white"
+        "icon": "fas fa-university fa-xs text-white"
     },
     {
         "title": "Business Growth",
         "image": "http://layerdrops.com/conult/assets/images/services/services-page-img-6.jpg",
+        "image1": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "Lorem ipsum dolor sit donec amet tristique ante vel sem dictum is rhoncus elit sed.",
-        "icon": "fa fa-solid fa-chart-line fa-xs text-white"
+        "icon": "fas fa-chart-line fa-xs text-white"
     }
 ]

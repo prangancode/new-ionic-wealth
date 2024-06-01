@@ -1,14 +1,14 @@
 import React from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 const ServiceCard = ({ service }) => {
-    const { title, description, image, icon } = service;
+    const { title, description, image, image1,  icon } = service;
     return (
         <>
             <div className="services-one__single">
                 <div className="col-xl-4-home-service col-lg-4 fadeInUp animated" >
                     <div className="services-one__img-box">
                         <div className="services-one__img">
-                            <img src={image} alt="" />
+                            <img src={image1} alt="" />
                         </div>
                         <div className="services-one__icon">
                             <span className="icon-mobile-analytics"><i className={icon} /></span>

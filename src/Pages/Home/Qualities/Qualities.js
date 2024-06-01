@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import bnr5 from './../../../images/background/IW-Image-bg5.jpg';
 import './Qualities.css'
-import { ArrowRightIcon } from '@heroicons/react/solid'
+import { ArrowRightIcon } from '@heroicons/react/24/solid'
 
 
 const Qualities = () => {

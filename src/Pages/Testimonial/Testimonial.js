@@ -47,7 +47,7 @@ const Testimonial = () => {
                     <>
                       <blockquote className="testimonial-post dark:bg-slate-900">
                         <span>
-                          <i className="fa fa-quote-left"></i>
+                          <i className="fas fa-quote-left"></i>
                         </span>
                         <q>{testimonial.quote}</q>
                         <footer>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from "react-slick";
 import "./ReviewsCarousel.css"
-import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/solid'
+import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/24/solid'
 
 
 //Images
